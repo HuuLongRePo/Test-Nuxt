@@ -12,8 +12,10 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.6",
+    "ohmyfetch": "^0.4.21",
     "pinia": "^2.0.27",
     "primeicons": "^6.0.1",
-    "primevue": "^3.20.0"
+    "primevue": "^3.20.0",
+    "vue-currency-input": "^3.0.2"
   }
 }
