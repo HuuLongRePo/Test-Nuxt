@@ -1,35 +1,35 @@
 import { defineStore } from 'pinia'
-import {Product} from '@/types/product'
+import { Product } from '@/types/product'
 
 
 interface ProductState {
-  products            : Array<Product>;
-  product             : Product;
-  changeheader        : string,
-  visibledialog       : boolean,
-  isEdit              : boolean,
-  visibledialogDelete : boolean
+  products: Array<Product>;
+  product: Product;
+  changeheader: string,
+  visibledialog: boolean,
+  isEdit: boolean,
+  visibledialogDelete: boolean
 }
 
 export const useProductsStore = defineStore('products', {
   // other options...
 
-  state: ():ProductState => {
+  state: (): ProductState => {
     return {
-      products            : [],
-      product             : {},
-      changeheader        : "",
-      visibledialog       : false,
-      isEdit              : false,
-      visibledialogDelete : false
+      products: [],
+      product: {},
+      changeheader: "",
+      visibledialog: false,
+      isEdit: false,
+      visibledialogDelete: false
     }
   },
   actions: {
     //giống medthod
-     loadData() {
-       return $fetch(`${useRuntimeConfig().public.apiBase}/api/v1/products`)
+    loadData() {
+      return $fetch(`${useRuntimeConfig().public.apiBase}/api/v1/products`)
     },
-     createProduct(data:Product) {
+    createProduct(data: Product) {
       return $fetch(`${useRuntimeConfig().public.apiBase}/api/v1/products`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -38,7 +38,7 @@ export const useProductsStore = defineStore('products', {
         console.log(err);
       });
     },
-    updateProduct(data:Product) {
+    updateProduct(data: Product) {
       return $fetch(`${useRuntimeConfig().public.apiBase}/api/v1/products/${data.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -47,7 +47,7 @@ export const useProductsStore = defineStore('products', {
         console.log(err);
       });
     },
-    deleteProduct(data:Product) {
+    deleteProduct(data: Product) {
       return $fetch(`${useRuntimeConfig().public.apiBase}/api/v1/products/${data.id}`, {
         method: "DELETE"
       }).catch((err) => {
