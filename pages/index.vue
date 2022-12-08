@@ -5,7 +5,7 @@
             <Column field="name" header="Name Product"></Column>
             <Column field="price" header="Price Product"></Column>
             <Column field="description" header="Decription Product"></Column>
-            <Column :exportable="true" style="min-width:8rem">
+            <Column :exportable="true" style="min-width: 8rem">
                 <template #body="slotProps">
                     <Button icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
                         @click="editProduct(slotProps.data)"></Button>
@@ -21,8 +21,7 @@
                     <InputText id="nameproduct" type="text" v-model="product.name" />
                 </div>
                 <div class="field">
-                    <label for="description">Product
-                    </label>
+                    <label for="description">Description </label>
                     <InputText id="description" type="text" v-model="product.description" />
                 </div>
                 <div class="field">
@@ -46,7 +45,6 @@
                 <Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteSelectedProduct"></Button>
             </template>
         </Dialog>
-
     </div>
 </template>
 
@@ -64,11 +62,11 @@ export default {
             "changeheader",
             "visibledialog",
             "isEdit",
-            "visibledialogDelete"
+            "visibledialogDelete",
         ]),
         getTitle() {
-            return this.product.id ? 'Edit Product' : 'Create Product'
-        }
+            return this.product.id ? "Edit Product" : "Create Product";
+        },
     },
     methods: {
         ...mapActions(useProductsStore, [
@@ -79,44 +77,43 @@ export default {
         ]),
         hideDialog() {
             if (this.visibledialog) {
-                this.visibledialog = false
+                this.visibledialog = false;
             } else if (this.visibledialogDelete) {
-                this.visibledialogDelete = false
+                this.visibledialogDelete = false;
             }
         },
         async saveProduct() {
             if (this.product.id) {
-                await this.updateProduct(this.product)
-                await this.fetchData()
-                await this.hideDialog()
+                await this.updateProduct(this.product);
+                await this.fetchData();
+                await this.hideDialog();
             } else {
-                await this.createProduct(this.product)
-                await this.fetchData()
-                await this.hideDialog()
+                await this.createProduct(this.product);
+                await this.fetchData();
+                await this.hideDialog();
             }
         },
         async fetchData() {
-            const res = await this.loadData()
-            this.products = res
+            const res = await this.loadData();
+            this.products = res;
         },
         async openNew() {
-            this.product = {}
-            this.visibledialog = true
+            this.product = {};
+            this.visibledialog = true;
         },
         editProduct(data) {
-            this.product = { ...data }
-            this.visibledialog = true
+            this.product = { ...data };
+            this.visibledialog = true;
         },
         confirmDeleteProduct(data) {
-            this.visibledialogDelete = true
-            this.product = data
+            this.visibledialogDelete = true;
+            this.product = data;
         },
         async deleteSelectedProduct() {
-            await this.deleteProduct(this.product)
-            await this.fetchData()
-            await this.hideDialog()
-        }
-        ,
+            await this.deleteProduct(this.product);
+            await this.fetchData();
+            await this.hideDialog();
+        },
     },
 };
 </script>
